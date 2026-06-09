@@ -6,7 +6,6 @@ import {
 export default function Grid({ blok }) {
   return (
     <section
-      id="features"
       {...storyblokEditable(blok)}
       className="px-6 py-20"
     >

@@ -8,18 +8,21 @@ export default async function StoryPage({ params }) {
 
   const storyblokApi = getStoryblokApi();
 
+  let story;
+
   try {
     const { data } = await storyblokApi.get(
       `cdn/stories/${fullSlug}`,
       {
         version: "draft",
-        cv: Date.now(),
       }
     );
 
-    return <StoryblokStory story={data.story} />;
+    story = data.story;
   } catch (error) {
-    console.error(error);
+    console.error("Unable to load Storyblok story:", error);
     notFound();
   }
+
+  return <StoryblokStory story={story} />;
 }

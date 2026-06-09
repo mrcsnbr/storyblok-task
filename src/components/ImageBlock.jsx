@@ -1,7 +1,9 @@
 import { storyblokEditable } from "@storyblok/react/rsc";
 
 export default function ImageBlock({ blok }) {
-  if (!blok.image?.filename) {
+  const image = blok.image;
+
+  if (!image?.filename) {
     return null;
   }
 
@@ -12,8 +14,8 @@ export default function ImageBlock({ blok }) {
     >
       <div className="mx-auto max-w-4xl">
         <img
-          src={blok.image.filename}
-          alt={blok.image.alt || "Storyblok image"}
+          src={image.filename}
+          alt={image.alt || ""}
           className="h-auto w-full rounded-2xl object-cover"
         />
       </div>

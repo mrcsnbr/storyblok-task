@@ -6,9 +6,8 @@ export default function Teaser({ blok }) {
   const buttonUrl =
     link?.linktype === "url"
       ? link.url
-      : link?.cached_url
-        ? `/${link.cached_url.replace(/^\/+/, "")}`
-        : "#";
+      : link?.real_path ||
+        (link?.cached_url ? `/${link.cached_url.replace(/^\/+/, "")}` : "#");
 
   return (
     <section
@@ -16,9 +15,11 @@ export default function Teaser({ blok }) {
       className="px-6 py-24 text-center"
     >
       <div className="mx-auto max-w-4xl">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-          {blok.headline}
-        </h1>
+        {blok.headline && (
+          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+            {blok.headline}
+          </h1>
+        )}
 
         {blok.description && (
           <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-400">
