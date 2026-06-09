@@ -5,6 +5,7 @@ import Feature from "@/components/Feature";
 import Grid from "@/components/Grid";
 import Teaser from "@/components/Teaser";
 import ApiDemo from "@/components/ApiDemo";
+import ImageBlock from "@/components/ImageBlock";
 
 export const getStoryblokApi = storyblokInit({
   accessToken: process.env.STORYBLOK_DELIVERY_API_TOKEN,
@@ -15,6 +16,7 @@ export const getStoryblokApi = storyblokInit({
     grid: Grid,
     teaser: Teaser,
     api_demo: ApiDemo,
+    image_block: ImageBlock,
   },
   apiOptions: {
     region: 'eu',
