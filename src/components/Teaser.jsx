@@ -1,10 +1,14 @@
 import { storyblokEditable } from "@storyblok/react/rsc";
 
 export default function Teaser({ blok }) {
+  const link = blok.button_link;
+
   const buttonUrl =
-    blok.button_link?.url ||
-    blok.button_link?.cached_url ||
-    "#";
+    link?.linktype === "url"
+      ? link.url
+      : link?.cached_url
+        ? `/${link.cached_url.replace(/^\/+/, "")}`
+        : "#";
 
   return (
     <section
@@ -22,7 +26,7 @@ export default function Teaser({ blok }) {
           </p>
         )}
 
-        {blok.button_text && (
+        {blok.button_text && buttonUrl !== "#" && (
           <a
             href={buttonUrl}
             className="mt-8 inline-block rounded-lg bg-white px-6 py-3 font-semibold text-black transition hover:bg-gray-200"

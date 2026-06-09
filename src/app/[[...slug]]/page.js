@@ -4,7 +4,6 @@ import { getStoryblokApi } from "@/lib/storyblok";
 
 export default async function StoryPage({ params }) {
   const { slug } = await params;
-
   const fullSlug = slug?.join("/") || "home";
 
   const storyblokApi = getStoryblokApi();
@@ -13,15 +12,14 @@ export default async function StoryPage({ params }) {
     const { data } = await storyblokApi.get(
       `cdn/stories/${fullSlug}`,
       {
-        version:
-          process.env.NODE_ENV === "production"
-            ? "published"
-            : "draft",
+        version: "draft",
+        cv: Date.now(),
       }
     );
 
     return <StoryblokStory story={data.story} />;
-  } catch {
+  } catch (error) {
+    console.error(error);
     notFound();
   }
 }
